@@ -15,15 +15,15 @@ TARGET_UPSTREAM = "https://registry-1.docker.io"
 
 [env.production]
 name = "cloudflare-docker-proxy"
-# routes = [
-#   { pattern = "docker.nutramines.com", custom_domain = true },
-#   { pattern = "quay.nutramines.com", custom_domain = true },
-#   { pattern = "gcr.nutramines.com", custom_domain = true },
-#   { pattern = "k8s-gcr.nutramines.com", custom_domain = true },
-#   { pattern = "k8s.nutramines.com", custom_domain = true },
-#   { pattern = "ghcr.nutramines.com", custom_domain = true },
-#   { pattern = "cloudsmith.nutramines.com", custom_domain = true },
-# ]
+routes = [
+  { pattern = "docker.nutramines.com", custom_domain = true },
+  { pattern = "quay.nutramines.com", custom_domain = true },
+  { pattern = "gcr.nutramines.com", custom_domain = true },
+  { pattern = "k8s-gcr.nutramines.com", custom_domain = true },
+  { pattern = "k8s.nutramines.com", custom_domain = true },
+  { pattern = "ghcr.nutramines.com", custom_domain = true },
+  { pattern = "cloudsmith.nutramines.com", custom_domain = true },
+]
 
 [env.production.vars]
 MODE = "production"
@@ -31,7 +31,7 @@ TARGET_UPSTREAM = ""
 
 [env.staging]
 name = "cloudflare-docker-proxy-staging"
-# route = { pattern = "docker-staging.nutramines.com", custom_domain = true }
+route = { pattern = "docker-staging.nutramines.com", custom_domain = true }
 
 [env.staging.vars]
 MODE = "staging"
