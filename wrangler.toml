@@ -11,6 +11,7 @@ CUSTOM_DOMAIN = "nutramines.com"
 
 [site]
 bucket = "./src"
+main = "./src/index.js"
 
 
 [env.dev.vars]
