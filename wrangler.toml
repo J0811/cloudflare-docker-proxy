@@ -1,18 +1,14 @@
 name = "cloudflare-docker-proxy"
 compatibility_date = "2023-12-01"
+main = "./src/index.js" # Worker 脚本的入口文件
 
 [dev]
 ip = "0.0.0.0"
 port = 8787
 local_protocol = "http"
 
-[env.vars]
+[vars]
 CUSTOM_DOMAIN = "nutramines.com"
-
-[site]
-bucket = "./src"
-main = "./src/index.js"
-
 
 [env.dev.vars]
 MODE = "debug"
@@ -21,13 +17,13 @@ TARGET_UPSTREAM = "https://registry-1.docker.io"
 [env.production]
 name = "cloudflare-docker-proxy"
 routes = [
-  { pattern = "docker.nutramines.com", custom_domain = true },
-  { pattern = "quay.nutramines.com", custom_domain = true },
-  { pattern = "gcr.nutramines.com", custom_domain = true },
-  { pattern = "k8s-gcr.nutramines.com", custom_domain = true },
-  { pattern = "k8s.nutramines.com", custom_domain = true },
-  { pattern = "ghcr.nutramines.com", custom_domain = true },
-  { pattern = "cloudsmith.nutramines.com", custom_domain = true },
+  "https://docker.nutramines.com",
+  "https://quay.nutramines.com",
+  "https://gcr.nutramines.com",
+  "https://k8s-gcr.nutramines.com",
+  "https://k8s.nutramines.com",
+  "https://ghcr.nutramines.com",
+  "https://cloudsmith.nutramines.com"
 ]
 
 [env.production.vars]
@@ -36,7 +32,7 @@ TARGET_UPSTREAM = ""
 
 [env.staging]
 name = "cloudflare-docker-proxy-staging"
-route = { pattern = "docker-staging.nutramines.com", custom_domain = true }
+route = "https://docker-staging.nutramines.com"
 
 [env.staging.vars]
 MODE = "staging"
