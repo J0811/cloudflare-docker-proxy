@@ -25,3 +25,14 @@ jobs:
             CUSTOM_DOMAIN
           command: deploy --env production --minify src/index.js
           environment: production
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Prepare Yarn
+        run: corepack prepare yarn@4.5.0 --activate
+      
+      - name: Install Dependencies
+        run: yarn install
+      
+      - name: Deploy
+        run: npx wrangler deploy
