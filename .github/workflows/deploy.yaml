@@ -13,27 +13,26 @@ jobs:
     runs-on: ubuntu-latest
     name: Build & Deploy
     steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Enable Corepack
       - name: Enable Corepack
         run: corepack enable
 
+      # Step 3: Prepare Yarn
       - name: Prepare Yarn
         run: corepack prepare yarn@4.5.0 --activate
-      
-      - name: Install Dependencies
-        run: yarn install
-      
-      - name: Deploy
-        run: npx wrangler deploy
 
-      - uses: actions/checkout@v4
-      - name: Publish
+      # Step 4: Install dependencies
+      - name: Install dependencies
+        run: yarn install
+
+      # Step 5: Deploy using Wrangler Action
+      - name: Deploy to Cloudflare Workers
         uses: cloudflare/wrangler-action@v3
-        env:
-          CUSTOM_DOMAIN: ${{ secrets.CUSTOM_DOMAIN || 'libcuda.so' }}
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
-          accountId: ${{secrets.CF_ACCOUNT_ID}}
-          vars:
-            CUSTOM_DOMAIN
-          command: deploy --env production --minify src/index.js
-          environment: production
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          command: publish
