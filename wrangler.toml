@@ -8,6 +8,7 @@ local_protocol = "http"
 
 [env.vars]
 CUSTOM_DOMAIN = "nutramines.com"
+DOCS = './help.html'
 
 [env.dev.vars]
 MODE = "debug"
