@@ -49,12 +49,7 @@ async function handleRequest(request) {
   }
   // return help docs
   if (url.pathname === "/") {
-    return new Response(DOCS, {
-      status: 200,
-      headers: {
-        "content-type": "text/html"
-      }
-    });
+    return new Response.redirect(url.origin + "/help.html", 301);
   }
   const isDockerHub = upstream == dockerHub;
   const authorization = request.headers.get("Authorization");
