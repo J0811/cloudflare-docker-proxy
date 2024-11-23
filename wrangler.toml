@@ -2,9 +2,6 @@ name = "cloudflare-docker-proxy"
 compatibility_date = "2023-12-01"
 main = "./src/index.js"
 
-# 全局变量
-[vars]
-LOG_LEVEL = "info"
 
 # 开发环境
 [env.dev]
@@ -14,31 +11,34 @@ local_protocol = "http"
 [env.dev.vars]
 MODE = "debug"
 TARGET_UPSTREAM = "https://registry-1.docker.io"
+LOG_LEVEL = "debug"
 
 # 生产环境
 [env.production]
 name = "cloudflare-docker-proxy"
 routes = [
-  { pattern = "https://docker.nutramines.com", zone_name = "nutramines.com" },
-  { pattern = "https://quay.nutramines.com", zone_name = "nutramines.com" },
-  { pattern = "https://gcr.nutramines.com", zone_name = "nutramines.com" },
-  { pattern = "https://k8s-gcr.nutramines.com", zone_name = "nutramines.com" },
-  { pattern = "https://k8s.nutramines.com", zone_name = "nutramines.com" },
-  { pattern = "https://ghcr.nutramines.com", zone_name = "nutramines.com" },
-  { pattern = "https://cloudsmith.nutramines.com", zone_name = "nutramines.com" }
+  { pattern = "https://docker.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
+  { pattern = "https://quay.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
+  { pattern = "https://gcr.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
+  { pattern = "https://k8s-gcr.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
+  { pattern = "https://k8s.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
+  { pattern = "https://ghcr.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
+  { pattern = "https://cloudsmith.nutramines.com", custom_domain = true, zone_name = "nutramines.com" }
 ]
 [env.production.vars]
 MODE = "production"
 TARGET_UPSTREAM = ""
 CUSTOM_DOMAIN = "nutramines.com"
+LOG_LEVEL = "info"
 
 # 测试环境
 [env.staging]
 name = "cloudflare-docker-proxy-staging"
 route = [
-  { pattern = "https://docker-staging.nutramines.com", zone_name = "nutramines.com" }
+  { pattern = "https://docker-staging.nutramines.com", custom_domain = true, zone_name = "nutramines.com" }
 ]
 [env.staging.vars]
 MODE = "staging"
 TARGET_UPSTREAM = ""
 CUSTOM_DOMAIN = "nutramines.com"
+LOG_LEVEL = "info"
