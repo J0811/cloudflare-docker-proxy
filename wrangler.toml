@@ -4,7 +4,6 @@ main = "./src/index.js"
 
 # 全局变量
 [vars]
-CUSTOM_DOMAIN = "nutramines.com"
 LOG_LEVEL = "info"
 
 # 开发环境
@@ -20,22 +19,26 @@ TARGET_UPSTREAM = "https://registry-1.docker.io"
 [env.production]
 name = "cloudflare-docker-proxy"
 routes = [
-  "https://docker.nutramines.com",
-  "https://quay.nutramines.com",
-  "https://gcr.nutramines.com",
-  "https://k8s-gcr.nutramines.com",
-  "https://k8s.nutramines.com",
-  "https://ghcr.nutramines.com",
-  "https://cloudsmith.nutramines.com"
+  { pattern = "https://docker.nutramines.com", zone_name = "nutramines.com" },
+  { pattern = "https://quay.nutramines.com", zone_name = "nutramines.com" },
+  { pattern = "https://gcr.nutramines.com", zone_name = "nutramines.com" },
+  { pattern = "https://k8s-gcr.nutramines.com", zone_name = "nutramines.com" },
+  { pattern = "https://k8s.nutramines.com", zone_name = "nutramines.com" },
+  { pattern = "https://ghcr.nutramines.com", zone_name = "nutramines.com" },
+  { pattern = "https://cloudsmith.nutramines.com", zone_name = "nutramines.com" }
 ]
 [env.production.vars]
 MODE = "production"
 TARGET_UPSTREAM = ""
+CUSTOM_DOMAIN = "nutramines.com"
 
 # 测试环境
 [env.staging]
 name = "cloudflare-docker-proxy-staging"
-route = "https://docker-staging.nutramines.com"
+route = [
+  { pattern = "https://docker-staging.nutramines.com", zone_name = "nutramines.com" }
+]
 [env.staging.vars]
 MODE = "staging"
 TARGET_UPSTREAM = ""
+CUSTOM_DOMAIN = "nutramines.com"
