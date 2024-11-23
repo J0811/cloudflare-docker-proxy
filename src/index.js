@@ -1,4 +1,4 @@
-import DOCS from '../pages/help.html'
+
 
 addEventListener("fetch", (event) => {
   event.passThroughOnException();
@@ -54,12 +54,7 @@ async function handleRequest(request) {
   console.log(`[Request] Hostname: ${url.hostname}, Resolved upstream: ${upstream}`);
 
   if (url.pathname === "/") {
-    return new Response(DOCS, {
-      status: 200,
-      headers: {
-        "content-type": "text/html"
-      }
-    });
+    return Response.redirect("/help.html", 301);
   }
 
   const authorization = request.headers.get("Authorization");
