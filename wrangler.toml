@@ -35,6 +35,7 @@ LOG_LEVEL = "info"
 [env.staging]
 name = "cloudflare-docker-proxy-staging"
 route = [
+  { pattern = "k8s-staging.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
   { pattern = "docker-staging.nutramines.com", custom_domain = true, zone_name = "nutramines.com" }
 ]
 [env.staging.vars]
