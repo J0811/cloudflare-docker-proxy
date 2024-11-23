@@ -17,13 +17,13 @@ LOG_LEVEL = "debug"
 [env.production]
 name = "cloudflare-docker-proxy"
 routes = [
-  { pattern = "https://docker.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
-  { pattern = "https://quay.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
-  { pattern = "https://gcr.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
-  { pattern = "https://k8s-gcr.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
-  { pattern = "https://k8s.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
-  { pattern = "https://ghcr.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
-  { pattern = "https://cloudsmith.nutramines.com", custom_domain = true, zone_name = "nutramines.com" }
+  { pattern = "docker.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
+  { pattern = "quay.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
+  { pattern = "gcr.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
+  { pattern = "k8s-gcr.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
+  { pattern = "k8s.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
+  { pattern = "ghcr.nutramines.com", custom_domain = true, zone_name = "nutramines.com" },
+  { pattern = "cloudsmith.nutramines.com", custom_domain = true, zone_name = "nutramines.com" }
 ]
 [env.production.vars]
 MODE = "production"
@@ -35,7 +35,7 @@ LOG_LEVEL = "info"
 [env.staging]
 name = "cloudflare-docker-proxy-staging"
 route = [
-  { pattern = "https://docker-staging.nutramines.com", custom_domain = true, zone_name = "nutramines.com" }
+  { pattern = "docker-staging.nutramines.com", custom_domain = true, zone_name = "nutramines.com" }
 ]
 [env.staging.vars]
 MODE = "staging"
