@@ -52,7 +52,12 @@ async function handleRequest(request) {
   console.log(`[Request] Hostname: ${url.hostname}, Resolved upstream: ${upstream}`);
 
   if (url.pathname === "/") {
-    return Response.redirect(`${url.origin}/help.html`, 301);
+    return Response.redirect("/help.html", 301);
+  }
+  
+  if (url.pathname.endsWith(".html")) {
+  // 静态文件逻辑（Cloudflare Workers 的 `site` 功能会处理）
+  return new Response("Static file response", { status: 200 });
   }
 
   const authorization = request.headers.get("Authorization");
