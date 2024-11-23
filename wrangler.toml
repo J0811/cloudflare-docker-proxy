@@ -1,24 +1,22 @@
-name = "cloudflare-docker-proxy" # Worker 的全局名称
-compatibility_date = "2023-12-01" # Cloudflare Worker 的兼容性日期
-main = "./src/index.js" # Worker 脚本入口文件
+name = "cloudflare-docker-proxy"
+compatibility_date = "2023-12-01"
+main = "./src/index.js"
 
-# 开发环境配置
-[dev]
-ip = "0.0.0.0" # 开发服务器监听地址
-port = 8787    # 开发服务器端口
-local_protocol = "http" # 开发环境使用 HTTP 协议
-
-# 全局变量（不会自动继承）
+# 全局变量
 [vars]
-LOG_LEVEL = "info" # 通用的日志级别
+CUSTOM_DOMAIN = "nutramines.com"
+LOG_LEVEL = "info"
 
-# 开发环境变量
+# 开发环境
+[env.dev]
+ip = "0.0.0.0"
+port = 8787
+local_protocol = "http"
 [env.dev.vars]
 MODE = "debug"
 TARGET_UPSTREAM = "https://registry-1.docker.io"
-CUSTOM_DOMAIN = "nutramines.com"
 
-# 生产环境配置
+# 生产环境
 [env.production]
 name = "cloudflare-docker-proxy"
 routes = [
@@ -33,13 +31,11 @@ routes = [
 [env.production.vars]
 MODE = "production"
 TARGET_UPSTREAM = ""
-CUSTOM_DOMAIN = "nutramines.com"
 
-# 测试环境配置
+# 测试环境
 [env.staging]
 name = "cloudflare-docker-proxy-staging"
 route = "https://docker-staging.nutramines.com"
 [env.staging.vars]
 MODE = "staging"
 TARGET_UPSTREAM = ""
-CUSTOM_DOMAIN = "nutramines.com"
